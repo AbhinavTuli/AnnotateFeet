@@ -19,7 +19,6 @@ for i in range(img.size[0]):
 #         if i<img.size[0] and i>=0 & j<img.size[1] and j>=0 and pixels([i][j])==255:
 
 # img = img.filter(ImageFilter.FIND_EDGES)
-img = img.filter(ImageFilter.SHARPEN)
-
+img = img.filter(ImageFilter.MedianFilter(size = 3))
 
 img.save('greyscale2.png')
