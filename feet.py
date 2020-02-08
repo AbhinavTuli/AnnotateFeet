@@ -1,3 +1,4 @@
+import random
 from PIL import Image
 from PIL import ImageFilter
 img = Image.open('0000215_L_01.tif').convert('L')
@@ -13,15 +14,21 @@ for i in range(img.size[0]):
         if i<10 or j<10:
             pixels[i,j]=0
 
-# for i in range(img.size[0]): 
-#     for j in range(img.size[1]):
-#         if pixels[i][j]==0:
-#             continue
-#         if i<img.size[0] and i>=0 & j<img.size[1] and j>=0 and pixels([i][j])==255:
+l = []
 
 
 img = img.filter(ImageFilter.MedianFilter(size = 3))
 img = img.filter(ImageFilter.MedianFilter(size = 3))
+img = img.filter(ImageFilter.MedianFilter(size = 3))
+
+img = img.filter(ImageFilter.FIND_EDGES())
+pixels=img.load()
+
+for i in range(img.size[0]):
+    for j in range(img.size[1]):
+        if pixels[i,j] == 255:
+            l.append([i,j])
+#        if i<img.size[0] and i>=0 & j<img.size[1] and j>=0 and pixels([i][j])==255:
 
 # img = img.filter(ImageFilter.FIND_EDGES)
 
