@@ -15,4 +15,4 @@ for i in range(img.size[0]):
         if(pixels[i,j]>150):
             ann_img[i,j]=1
             ct+=1
-print(ct)
+#print(ct)
