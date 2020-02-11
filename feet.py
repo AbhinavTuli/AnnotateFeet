@@ -4,9 +4,9 @@ import numpy as np
 import os
 from PIL import Image
 from PIL import ImageFilter
-files = os.listdir("/Users/abhinav/Documents/KT/footprint/")
+files = os.listdir("/home/kr08rises/footprint_dataset/")
 for file in files:
-    img = Image.open("/Users/abhinav/Documents/KT/footprint/"+file).convert('L')
+    img = Image.open("/home/kr08rises/footprint_dataset/"+file).convert('L')
     threshold=80
     img = img.point(lambda p: p > threshold and 255) 
     cordinate = x, y = 151, 200
