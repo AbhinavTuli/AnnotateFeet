@@ -1,3 +1,6 @@
+#this goes through the entire original dataset and performs thresholding taking 80 as the threshold in an attempt to generate the ground truth values.
+#not all the annotations turn out perfect and thus, we use oneFeet.py to manually fix individual feet annotations.
+
 import random
 import cv2
 import numpy as np
@@ -9,7 +12,7 @@ for file in files:
     img = Image.open("/Users/abhinav/Documents/KT/footprint/"+file).convert('L')
     threshold=80
     img = img.point(lambda p: p > threshold and 255) 
-    cordinate = x, y = 151, 200
+    #cordinate = x, y = 151, 200
     pixels=img.load()
     
     #sort the boundary
@@ -23,13 +26,13 @@ for file in files:
     #img.save('greyscale2.png')
 
     pixels=img.load()
-    ann_img = np.zeros((img.size[0],img.size[1],1)).astype('uint8')
+    ann_img = np.zeros((img.size[1],img.size[0],1)).astype('uint8')
     #ann_img[ 3 , 4 ] = 1 # this would set the label of pixel 3,4 as 1
     #ct=0
     for i in range(img.size[0]): 
         for j in range(img.size[1]):
             if(pixels[i,j]>150):
-                ann_img[i,j]=1
+                ann_img[j,i]=1
                 #ct+=1
 
     cv2.imwrite( "/Users/abhinav/Documents/KT/annotation/"+file,ann_img )
