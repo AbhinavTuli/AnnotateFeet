@@ -1,25 +1,3 @@
-<<<<<<< HEAD
-datagen = ImageDataGenerator()
-datagen.fit(train)
-X_batch, y_batch = datagen.flow(X_train, y_train, batch_size=batch_size)
-model.fit_generator(datagen, samples_per_epoch=len(train), epochs=epochs)
-datagen = ImageDataGenerator(rotation_range=30, horizontal_flip=0.5)
-datagen.fit(img)i=0
-
-for img_batch in datagen.flow(img, batch_size=9):
-    for img in img_batch:
-        plt.subplot(330 + 1 + i)
-        plt.imshow(img)
-        i=i+1
-    if i >= batch_size:
-        break
-
-def AHE(img):
-    img_adapteq = exposure.equalize_adapthist(img, clip_limit=0.03)
-    return img_adapteq
-
-datagen = ImageDataGenerator(rotation_range=30, horizontal_flip=0.5, preprocessing_function=AHE)
-=======
 #augmenting the dataset of footprints before feeding it to the network for segmentation
 
 import imgaug as ia
@@ -74,4 +52,4 @@ for i in range(2):
         # imgann.save('/Users/abhinav/Documents/KT/augannotation/'+str(ct)+'.png')
         imgpic.save('/Users/abhinav/Documents/KT/ims/'+str(ct)+'.png')
         imgann.save('/Users/abhinav/Documents/KT/anns/'+str(ct)+'.png')
->>>>>>> 88001a21c7d7c1b7182307cc051e4c0e25bf900d
+
