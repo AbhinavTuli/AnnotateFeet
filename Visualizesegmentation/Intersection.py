@@ -13,14 +13,14 @@ gtimg = cv2.imread("groundtruth.png")
 # Checking output image on different rgb scales
 # for i in range(30) :
 #     print(outimg[i+200, i+500])
-
+#output image has blue scale below 100 for "not feet"
 
 for i in range(gtimg.shape[0]):
     for j in range(gtimg.shape[1]):
-        if gtimg[i,j,1] == 1 :
+        if gtimg[i, j, 1] == 1 :
             origimg[i, j, 2] = 255          #if groundtruth is 1, turn the green band to max value
-        if outimg[i, j ,2] >100:
+        if outimg[i, j, 2] >100:
             origimg[i, j, 0] = 255          #if outimg is > 100  pm the blue scale, turn the blue band in the original image to max
 
 
-cv2.imwrite('intersectui.png',origimg)
+cv2.imwrite('intersect.png', origimg)
