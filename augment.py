@@ -7,7 +7,7 @@ import numpy as np
 from PIL import Image
 
 seq = iaa.Sequential([
-    iaa.Crop(px=(0, 100)), # crop images from each side by 0 to 16px (randomly chosen)
+    iaa.Crop(px=(0, 100)), # crop images from each side by 0 to 100px (randomly chosen)
     iaa.Fliplr(0.5), # horizontally flip 50% of the images
     iaa.GaussianBlur(sigma=(0, 3.0)), # blur images with a sigma of 0 to 3.0
     iaa.Affine(
