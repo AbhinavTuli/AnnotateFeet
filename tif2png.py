@@ -3,7 +3,7 @@
 import cv2
 import os
 from PIL import Image
-files = os.listdir("/Users/abhinav/Documents/KT/footprint/")
+files = os.listdir("/Users/abhinav/Documents/Foot Data and Manipulations/dataset/")
 for file in files:
-    img = Image.open("/Users/abhinav/Documents/KT/footprint/"+file)
-    img.save( "/Users/abhinav/Documents/KT/pngfootprint/"+file[0:-3]+".png")
+    img = Image.open("/Users/abhinav/Documents/Foot Data and Manipulations/dataset/"+file)
+    img.save( "/Users/abhinav/Documents/Foot Data and Manipulations/pngDataset/"+file[0:-3]+"png")
