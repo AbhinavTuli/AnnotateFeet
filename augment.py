@@ -20,7 +20,7 @@ seq = iaa.Sequential([
     iaa.Multiply((0.8, 1.2), per_channel=0.2),
     iaa.LinearContrast((0.5, 1.75)),
     #iaa.Flipud(0.5)
-],random_order=True)
+])
 
 def augment_seg( img , seg  ):
 	
@@ -33,16 +33,16 @@ def augment_seg( img , seg  ):
 
 	return image_aug , segmap_aug
 
-pics = os.listdir("/Users/abhinav/Documents/Foot Data and Manipulations/Testing/Dataset/")
-anns = os.listdir("/Users/abhinav/Documents/Foot Data and Manipulations/Testing/Annotations/")
+pics = os.listdir("/Users/abhinav/Documents/Foot Data and Manipulations/Training/Dataset/")
+anns = os.listdir("/Users/abhinav/Documents/Foot Data and Manipulations/Training/Annotations/")
 
 ct=0
 for i in range(2):
-    for pic,ann in zip(pics,anns):
+    for pic in pics:
         try:
             ct+=1
-            ipic = Image.open("/Users/abhinav/Documents/Foot Data and Manipulations/Testing/Dataset/"+pic)
-            iann = Image.open("/Users/abhinav/Documents/Foot Data and Manipulations/Testing/Annotations/"+ann)
+            ipic = Image.open("/Users/abhinav/Documents/Foot Data and Manipulations/Training/Dataset/"+pic)
+            iann = Image.open("/Users/abhinav/Documents/Foot Data and Manipulations/Training/Annotations/"+pic)
             npic=np.asarray(ipic)
             nann=np.asarray(iann)
             # print(type(npic))
@@ -52,8 +52,8 @@ for i in range(2):
             imgann = Image.fromarray(augann)
             # imgpic.save('/Users/abhinav/Documents/KT/augfootprint/'+str(ct)+'.png')
             # imgann.save('/Users/abhinav/Documents/KT/augannotation/'+str(ct)+'.png')
-            imgpic.save('/Users/abhinav/Documents/Foot Data and Manipulations/Testing/AugmentedDataset/'+str(ct)+'.png')
-            imgann.save('/Users/abhinav/Documents/Foot Data and Manipulations/Testing/AugmentedAnnotations/'+str(ct)+'.png')
+            imgpic.save('/Users/abhinav/Documents/Foot Data and Manipulations/Training/AugmentedDataset/'+str(ct)+"_"+pic[0:-4]+'.png')
+            imgann.save('/Users/abhinav/Documents/Foot Data and Manipulations/Training/AugmentedAnnotations/'+str(ct)+"_"+pic[0:-4]+'.png')
         except Exception as e:
             print("Error!",e)
 

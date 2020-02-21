@@ -4,22 +4,23 @@ from keras.layers import Dense
 from keras.models import model_from_json
 import numpy
 import os
-model = vgg_unet(n_classes=2 ,  input_height=416, input_width=608  )
+model = vgg_unet(n_classes=2 ,  input_height=224, input_width=224  )
 
 # load weights into model
-model.load_weights("model_train2.h5")
+model.load_weights("model_unet_21Feb_1.h5")
 
 #to test the trained model
-files =os.listdir("./ims/")
+files =os.listdir("/Users/abhinav/Documents/Foot Data and Manipulations/Testing/AugmentedDataset/")
 
 for file in files:
     print(file)
     try:
         out = model.predict_segmentation(
-        inp="./ims/"+file,
-        out_fname="./outmodifiedwts/"+file
+        inp="/Users/abhinav/Documents/Foot Data and Manipulations/Testing/AugmentedDataset/"+file,
+        out_fname="/Users/abhinav/Documents/Foot Data and Manipulations/Testing/Output 1st Epoch/"+file
 )
-    except:
+    except Exception as e:
+        print(e)
         continue
 
 #To further train model
@@ -29,3 +30,5 @@ for file in files:
 #     train_annotations = "./anns/",
 #     checkpoints_path = "./tmp/vgg_unet_1", epochs=1
 # )
+
+#print(model.evaluate_segmentation( model,os.listdir("/Users/abhinav/Documents/Foot Data and Manipulations/Testing/AugmentedDataset/")  , os.listdir("/Users/abhinav/Documents/Foot Data and Manipulations/Testing/AugmentedAnnotations/") ) )
