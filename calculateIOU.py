@@ -1,5 +1,4 @@
 #used to get the test case accuracy
-import random
 import cv2
 import numpy as np
 import os

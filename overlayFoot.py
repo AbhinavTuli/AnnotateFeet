@@ -1,20 +1,29 @@
 #this overlays ground truth and unet output over the original image 
 
-import cv2
+from PIL import Image
 
 def overlayFoot(ogImg,gtImg,outImg,output):
-    #opencv has order bgr for bands
-    for i in range(gtImg.shape[0]):
-        for j in range(gtImg.shape[1]):
-            if gtImg[i, j, 1] == 1 :
-                ogImg[i, j, 0] = 255          #if groundtruth is 1, turn the blue band to max value
-            if outImg[i, j, 2] >100:
-                ogImg[i, j, 2] = 255          #if outimg is > 100 , turn the red band in the original image to max
+    outImg=outImg.convert('L')
+    threshold=200
+    outImg = outImg.point(lambda p: p > threshold and 255) 
+
+    # ogPixels=ogImg.load()
+    outPixels=outImg.load()
+    gtPixels=gtImg.load()
+    for i in range(ogImg.size[0]): 
+            for j in range(ogImg.size[1]):
+                if outPixels[i,j]!=0:
+                    current_color = ogImg.getpixel( (i,j) )
+                    new_color=(255,current_color[1],current_color[2])
+                    ogImg.putpixel( (i,j), new_color)
+                if gtPixels[i,j]!=0:
+                    current_color = ogImg.getpixel( (i,j) )
+                    new_color=(current_color[0],current_color[1],255)
+                    ogImg.putpixel( (i,j), new_color)
+    ogImg.save(output)
 
 
-    cv2.imwrite(output, ogImg)
-
-ogImg = cv2.imread("/Users/abhinav/Documents/Foot Data and Manipulations/ims/189.png")
-outImg = cv2.imread("/Users/abhinav/Documents/Foot Data and Manipulations/modelOutputs/outmodifiedwts/189.png")
-gtImg = cv2.imread("/Users/abhinav/Documents/Foot Data and Manipulations/anns/189.png")
+ogImg = Image.open("/Users/abhinav/Documents/Foot Data and Manipulations/overlay/footprint.png")
+outImg = Image.open("/Users/abhinav/Documents/Foot Data and Manipulations/overlay/output.png")
+gtImg = Image.open("/Users/abhinav/Documents/Foot Data and Manipulations/overlay/groundtruth.png")
 overlayFoot(ogImg,gtImg,outImg,"try.png")

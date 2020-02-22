@@ -9,7 +9,6 @@ def applyMask(img,mask,output):
 
     imgPixels=img.load()
     maskPixels=mask.load()
-    ct1=ct2=0
     for i in range(img.size[0]): 
             for j in range(img.size[1]):
                 if maskPixels[i,j]==0:
