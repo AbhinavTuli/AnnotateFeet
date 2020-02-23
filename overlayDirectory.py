@@ -19,6 +19,6 @@ def overlayDir(datasetDir,gtDir,outDir,outputDir):
 
 datasetDir="/Users/abhinav/Documents/Foot Data and Manipulations/Testing/AugmentedDataset/"
 gtDir="/Users/abhinav/Documents/Foot Data and Manipulations/Testing/AugmentedAnnotations/"
-outDir="/Users/abhinav/Documents/Foot Data and Manipulations/Testing/Output 1st Epoch/"
-outputDir="/Users/abhinav/Documents/Foot Data and Manipulations/Testing/Overlay/"
+outDir="/Users/abhinav/Documents/Foot Data and Manipulations/Testing/Output 2nd Epoch/"
+outputDir="/Users/abhinav/Documents/Foot Data and Manipulations/Testing/Overlay2/"
 overlayDir(datasetDir,gtDir,outDir,outputDir)

@@ -40,6 +40,6 @@ def calcIOU(gtDir,outDir):
     #print(arr)
     return statistics.mean(arr)
 
-print(calcIOU("/Users/abhinav/Documents/Foot Data and Manipulations/Testing/AugmentedAnnotations/","/Users/abhinav/Documents/Foot Data and Manipulations/Testing/Output 1st Epoch/"))
+print(calcIOU("/Users/abhinav/Documents/Foot Data and Manipulations/Testing/AugmentedAnnotations/","/Users/abhinav/Documents/Foot Data and Manipulations/Testing/Output 2nd Epoch/"))
     
 
